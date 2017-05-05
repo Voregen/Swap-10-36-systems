@@ -1,0 +1,35 @@
+int main() {
+ios_base::sync_with_stdio();
+    freopen("input.txt", "r", stdin);
+    freopen("output.txt", "w", stdout);
+    int n,m;
+    cin >> n >> m;
+    string s;
+    cin >> s;
+    bigint is=0;
+    bigint sis=1;
+    //cout << int('A') << " " << int ('0') << endl;
+    for (int i(s.size()-1); i>=0; i--){
+        if (s[i]<'A') is=is+sis*(int(s[i])-48);
+        else {
+            is=is+sis*(int(s[i])-65+10);
+        }
+        sis=sis*n;
+    }
+    //cout << is << endl;
+    string ans="";
+    while (is>0){
+        if (is%m>9){
+            ans=char(is%m-10+65)+ans;
+        }
+        else {
+            ans=char(is%m+48)+ans;
+        }
+        is=is/m;
+    }
+    if (ans==""){
+        ans="0";
+    }
+    cout << ans << endl;
+    return 0;
+}
